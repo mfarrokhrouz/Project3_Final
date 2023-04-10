@@ -2,82 +2,145 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
+  <meta charset="utf-8">.
+  <!-- <title>Weather changing effects</title> -->
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+    integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+    crossorigin="" />
+  <!-- Leaflet JavaScript code -->
+  <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+    integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+    crossorigin=""></script>
+  <!-- Our CSS -->
+  <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Weather changing effects</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
-<body>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12 jumbotron text-center">
-        <h1>Weather Changing Effects Dashboard</h1>
+
+<body style="background-color: rgb(155, 179, 202);">
+  <div class="container" style="background-color: rgb(155, 179, 202)">
+    <div class="row" style="background-color: rgb(155, 179, 202);">
+      <div class="col-md-12 jumbotron text-center" style="background-color: rgb(155, 179, 202);">
+        <img src="Images/weather.PNG" style="width:1000px;height:200px;" alt="Weather image" />
         <!-- <p>Use the interactive charts below to explore the dataset</p> -->
       </div>
     </div>
-    <div class="row">
-      <div class="col-md-2">
-       
-        <div class="well">
-          <h5>City:</h5>
-          <select id="selCityDataset" onchange="updateGraph()"></select>
-        </div>
-         <div class="well">
-          <a href="GoogleCharts.html">Compare two cities</a>
-        </div>
-        
-        <!-- <div class="well">
-            <h5>Year:</h5>
-            <select id="selYearDataset" onchange="updateGraph()"></select>
-          </div> -->
-        <!-- <div class="panel panel-primary">
-          <div class="panel-heading">
-            <h3 class="panel-title">Demographic Info</h3>
-          </div>
-          <div id="sample-metadata" class="panel-body"></div>
-        </div> -->
-      </div>
-      <div class="col-md-9">
-        <div id="scatter">
-          <div id="plot1">
-          </div>    
-        </div>
-      </div>
-      <div class="col-md-12">
-        <div id="scatter">
-          <div id="plot2">
-          </div>    
-        </div>
-      </div>
-      <div class="col-md-12">
-        <div id="scatter">
-          <div id="plot3">
-          </div>    
-        </div>
-      </div>
-      <!-- <div class="col-md-8">
-        <div id="gauge"></div>
-      </div> -->
-    </div>
-    <!-- <div class="row">
-      <div class="col-md-12">
-        <div id="bubble"></div>
-      </div>
-    </div> -->
   </div>
+  <div class="row" style="background-color: rgb(155, 179, 202);">
+    <div class="col-md-2">
+      <div class="well">
+        <a href="Analysis.html">Weather Analysis</a>
+        <a href="GoogleCharts.html">Compare two cities</a>
+      </div>
+    </div>
+    <div>
 
-  <script src="https://d3js.org/d3.v5.min.js"></script>
-  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-  <script src="js/app.js"></script>
-  <svg width="500" height="500"></svg>
-  <style>
-    .selected {
-      opacity: 1 !important;
-      stroke: black;
-      stroke-width: 1px;
-    }
-  </style>
-  <!-- <script src="./static/js/bonus.js"></script> -->
+    </div>
+    <div class="col-md-8" style="background-color: rgb(155, 179, 202);">
+      <p style="font-size: medium;">
+        <h3><b>Data source:</b> https://rdrr.io/cran/rattle.data/man/weatherAUS.html</h3>
+      </p>
+      <p style="font-size: medium;">
+        <h3><b>Data Format:</b> CSV file</h3>
+      </p>
+      <p style="font-size: medium;">
+        <h3><b>Columns in the Dataset :</b></h3>
+      </p>
+      <p>
+      <ol>
+        <li>Date</li>
+        <li>Location</li>
+        <li>Temperature</li>
+        <li>Rainfall</li>
+        <li>Evaporation</li>
+        <li>Sunshine</li>
+        <li>Wind direction</li>
+        <li>Wind speed</li>
+        <li>Humidity</li>
+        <li>Pressure</li>
+        <li>Cloudiness</li>
+        <li>Chance of rain</li>
+      </ol>
+      </p>
+    </div>
+  </div>
+  <div class="row" style="background-color: rgb(155, 179, 202);">
+    <div class="col-md-2">
+    </div>
+    <div class="col-md-8" style="background-color: rgb(155, 179, 202);">
+      <br>
+      <h3><b>Dataset contains the following cities as shown in the map below:</b></h3>
+      <!-- The div where we'll insert our map -->
+      <div id="map"></div>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+    </div>
+  </div>
+  <div class="row" style="background-color: rgb(155, 179, 202);">
+    <div class="col-md-2">
+    </div>
+    <div class="col-md-8" style="background-color: rgb(155, 179, 202);">
+      <p>
+        <h3>
+        <b>
+          The following analyses will be performed on the selected cities of the dataset:
+        </b>
+      </h3>
+      </p>
+      <ul>
+        <li>
+          How is the effect of temperature changes on other weather parameters like rainfall, humidity, evaporation and
+          pressure?
+        </li>
+        <li>
+          What is the advice for certain industries who are the most affected by the weather changes?
+        </li>
+      </ul>
+    <!-- </div>
+    <div class="col-md-12" style="background-color: rgb(155, 179, 202);">
+      <div class="col-md-2">
+      </div> -->
+    </h3>
+      <p>The aim of this study is to give advice on those industrial sectors which are mostly affected by weather
+        changes. These sectors are:
+      </p>
+      <ul>
+        <li>
+          Agriculture
+        </li>
+        <li>
+          Insurance
+        </li>
+        <li>
+          Tourism
+        </li>
+      </ul>
+      <!-- <p><b>The following sectors are considered optional for the analysis:</b></p>
+      <ul>
+        <li>
+          Mining
+        </li>
+        <li>
+          Construction
+        </li>
+        <li>
+          Retail
+        </li>
+        <li>
+          Beverage
+        </li>
+      </li>
+      </p> -->
+    </div>
+  </div>
+  <!-- JavaScript file -->
+  <script type="text/javascript" src="Map_Markups/logic.js"></script>
 </body>
+
 </html>

@@ -85,6 +85,7 @@ function drawBarGraph(city_name) {
             console.log(value["maxtemp"]);
             console.log(value["mintemp"]);
             console.log(value["Rainfall"]);
+            console.log(value["pressure9am"]);
             MaxTemp_arr.push(value["maxtemp"]);
             MinTemp_arr.push(value["mintemp"]);
             rainfall_arr.push(value["Rainfall"]);
@@ -187,13 +188,13 @@ function Graph2(city_name){
             console.log(value["date"]);
             console.log(value["Rainfall"]);
             console.log(value["evaporation"]);
-            console.log(value["pressure"]);
+            console.log(value["pressure9am"]);
             console.log(value["evaporation"]/value["Rainfall"]);
             rainfall_arr.push(value["Rainfall"]);
             weatherdates.push(value["date"]);
             Evaporation_arr.push(value["evaporation"]);
             aridity_index.push(value["evaporation"]/value["Rainfall"]);
-            Pressure_arr.push(value["pressure"]);
+            Pressure_arr.push(value["pressure9am"]);
         }
         // //CREATE trace variable
         var trace3 = {
