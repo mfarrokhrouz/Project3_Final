@@ -119,7 +119,7 @@ def start(location):
     # Create our session (link) from Python to the DB
     session = Session(engine)
     #get the list of date, minimum maximum and average of the temperature for the location
-    results = session.query(AusCityWeather.Date,AusCityWeather.MinTemp,AusCityWeather.MaxTemp,AusCityWeather.Rainfall,AusCityWeather.Evaporation,AusCityWeather.WindGustSpeed,AusCityWeather.Pressure9am).\
+    results = session.query(AusCityWeather.Date,AusCityWeather.MinTemp ,AusCityWeather.MaxTemp,AusCityWeather.Rainfall,AusCityWeather.Evaporation,AusCityWeather.WindGustSpeed,AusCityWeather.Pressure9am).\
     order_by(AusCityWeather.Date).filter(AusCityWeather.City == location).all()
 
     #return the result as a list of dicts
